@@ -37,6 +37,7 @@ jobs:
 
       # 5. S3 sync
       - name: Sync to S3
+        working-directory: ./ssg
         run: |
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }}/ --delete
 
