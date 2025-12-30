@@ -1,0 +1,47 @@
+name: Deploy SSG Blog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      # 1. リポジトリ取得
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Rust セットアップ
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      # 3. AWS 認証
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # 4. SSG 実行
+      - name: Build site
+        run: |
+          cargo run
+
+      # 5. S3 sync
+      - name: Sync to S3
+        run: |
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET }}/ --delete
+
+      # 6. CloudFront Invalidation
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} \
+            --paths "/*"
