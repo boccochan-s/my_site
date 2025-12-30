@@ -31,6 +31,7 @@ jobs:
 
       # 4. SSG 実行
       - name: Build site
+        working-directory: ./ssg
         run: |
           cargo run
 
