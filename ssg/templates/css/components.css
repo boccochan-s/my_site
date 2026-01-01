@@ -3,53 +3,67 @@
 /* header */
 #header {
     width: 100%;
-    align-items: center;
-    display: block;
-    justify-content: space-between;
-    position: sticky;
-    border-bottom: #00a381 0.1rem solid;
 }
 
 #header-inner {
-    display: flex;
+    padding: 2rem;
     width: 100%;
+    color: #006650;
+    border-bottom: #00a381 0.3rem double;
+}
+
+#header-inner a:hover {
+    text-decoration: none;
 }
 
 /* footer */
 #footer {
-    display: block;
+    padding: 2rem;
 }
 
 /* post */
 article {
-  padding: 1rem;
-  margin-bottom: 1rem;
+    padding: 1rem;
 }
-
-article h1 {
-    font-size: 1.5rem;
-}
-
 article time {
-  display: block;
-  font-size: 0.9rem;
-  color: #666;
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
 }
 
 .post-card {
     padding: 2rem;
 }
 
+.post-card h1 {
+    color: #006650;
+}
+
+.post-card h2 {
+    color: #006650;
+}
+
+.post-card h3 {
+    color: #006650;
+}
+
 .post-card a {
-    color: #0066cc;
-    text-decoration: none;
+    color: #00a381;
 }
 
 .post-card a:hover {
+    color: #00cca0;
     text-decoration: underline;
 }
 
 .post-content {
-    padding: 0 2rem;
+    padding: 0 2rem 2rem 2rem;
+    border-bottom: 0.1rem #00a381 dashed;
+}
+
+.post-content pre {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    overflow-x: auto;
 }

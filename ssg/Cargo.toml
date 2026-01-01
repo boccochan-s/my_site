@@ -4,15 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# 非同期ランタイム（DynamoDB SDKが必要）
-tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
-
-# AWS SDK
-aws-config = "1"
-aws-sdk-dynamodb = "1"
-
 # HTMLテンプレート
 tera = "1.19"
 
 # JSON（将来拡張・デバッグ用）
 serde = { version = "1", features = ["derive"] }
+
+# markdown->html
+pulldown-cmark = "0.10"
+serde_yaml = "0.9"
+walkdir = "2"

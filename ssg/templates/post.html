@@ -3,11 +3,17 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{ post.title }}</title>
+    <title>{{ post.front.title }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/components.css">
 </head>
 
 <body>
-    {% include "post_component.html" %}
+    {% include "header.html" %}
+    <div class="post-card">
+        {% include "post_component.html" %}
+    </div>
+    {% include "footer.html" %}
 </body>
 
 </html>

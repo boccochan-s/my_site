@@ -2,7 +2,7 @@ use tera::{Tera, Context};
 use std::fs;
 use crate::model::Post;
 
-pub fn render(posts: &[Post]) {
+pub fn render_posts(posts: &[Post]) {
     let tera = Tera::new("templates/**/*").unwrap();
 
     // CSS ファイルをコピー
@@ -17,13 +17,17 @@ pub fn render(posts: &[Post]) {
 
         let html = tera.render("post.html", &ctx).unwrap();
         fs::write(
-            format!("dist/posts/{}.html", post.slug),
+            format!("dist/posts/{}.html", post.front.slug),
             html,
         ).unwrap();
     }
+}
+
+pub fn render_index(posts: &[Post]) {
+    let tera = Tera::new("templates/**/*").unwrap();
 
     let mut ctx = Context::new();
-    ctx.insert("posts", posts);
+    ctx.insert("posts", &posts);
     let index_html = tera.render("index.html", &ctx).unwrap();
     fs::write("dist/index.html", index_html).unwrap();
 }

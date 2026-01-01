@@ -1,12 +1,15 @@
-// model.rs
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize)]
-pub struct Post {
+#[derive(Debug, Deserialize, Serialize)]
+pub struct FrontMatter {
     pub title: String,
     pub slug: String,
-    pub category: u8,
-    pub content_html: String,
-    pub created_at: String,
-    pub updated_at: String,
+    pub date: String,
+    pub published: bool,
+}
+
+#[derive(serde::Serialize)]
+pub struct Post {
+    pub front: FrontMatter,
+    pub html: String,
 }
