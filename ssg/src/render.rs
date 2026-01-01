@@ -29,6 +29,7 @@ pub fn render_index(posts: &[Post]) {
     let mut ctx = Context::new();
     ctx.insert("posts", &posts);
     let index_html = tera.render("index.html", &ctx).unwrap();
+    fs::create_dir_all("dist").unwrap();
     fs::write("dist/index.html", index_html).unwrap();
 }
 
