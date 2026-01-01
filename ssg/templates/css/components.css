@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* header */
+#header {
+    width: 100%;
+    align-items: center;
+    display: block;
+    justify-content: space-between;
+    position: sticky;
+    border-bottom: #00a381 0.1rem solid;
+}
+
+#header-inner {
+    display: flex;
+    width: 100%;
+}
+
+/* footer */
+#footer {
+    display: block;
+}
+
+/* post */
+article {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+article h1 {
+    font-size: 1.5rem;
+}
+
+article time {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.post-card {
+    padding: 2rem;
+}
+
+.post-card a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.post-card a:hover {
+    text-decoration: underline;
+}
+
+.post-content {
+    padding: 0 2rem;
+}
