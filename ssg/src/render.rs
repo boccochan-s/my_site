@@ -1,5 +1,6 @@
 use tera::{Tera, Context};
 use std::fs;
+use std::path::Path;
 use crate::model::Post;
 
 pub fn render_posts(posts: &[Post]) {
@@ -8,6 +9,9 @@ pub fn render_posts(posts: &[Post]) {
     // CSS ファイルをコピー
     fs::create_dir_all("dist/css").unwrap();
     copy_css().unwrap_or_else(|e| eprintln!("CSS copy failed: {}", e));
+
+    // img フォルダを dist/img にコピー
+    copy_img().unwrap_or_else(|e| eprintln!("img copy failed: {}", e));
 
     fs::create_dir_all("dist/posts").unwrap();
 
@@ -42,6 +46,23 @@ fn copy_css() -> std::io::Result<()> {
                 let file_name = path.file_name().unwrap();
                 fs::copy(&path, format!("dist/css/{}", file_name.to_string_lossy()))?;
             }
+        }
+    }
+    Ok(())
+}
+
+fn copy_img() -> std::io::Result<()> {
+    let img_dir = Path::new("img");
+    if !img_dir.exists() || !img_dir.is_dir() {
+        return Ok(());
+    }
+    fs::create_dir_all("dist/img")?;
+    for entry in fs::read_dir(img_dir)? {
+        let entry = entry?;
+        let path = entry.path();
+        if path.is_file() {
+            let file_name = path.file_name().unwrap();
+            fs::copy(&path, format!("dist/img/{}", file_name.to_string_lossy()))?;
         }
     }
     Ok(())

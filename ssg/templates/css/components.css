@@ -1,19 +1,16 @@
 @charset "UTF-8";
 
 /* header */
-#header {
-    width: 100%;
-}
-
-#header-inner {
-    padding: 2rem;
+.header {
     width: 100%;
     color: #006650;
     border-bottom: #00a381 0.3rem double;
 }
 
-#header-inner a:hover {
-    text-decoration: none;
+.header-inner {
+    padding: 2rem;
+    width: 100%;
+    color: #006650;
 }
 
 /* footer */
@@ -66,4 +63,17 @@ article time {
     background-color: #f4f4f4;
     padding: 1rem;
     overflow-x: auto;
+}
+
+/* post-content内の画像：レスポンシブ対応 */
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .post-content img {
+        width: 50%;
+    }
 }
