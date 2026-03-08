@@ -5,12 +5,157 @@
     width: 100%;
     color: #006650;
     border-bottom: #00a381 0.3rem double;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.header.header-is-hidden {
+    transform: translateY(-100%);
+}
+
+body {
+    padding-top: 4rem;
 }
 
 .header-inner {
-    padding: 2rem;
+    padding: 1rem 1.5rem;
     width: 100%;
     color: #006650;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-title a {
+    color: #006650;
+}
+
+.menu-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 1.8rem;
+    height: 0.15rem;
+    background-color: #006650;
+    border-radius: 999px;
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid #00a381;
+    outline-offset: 2px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+    height: 100vh;
+    width: 80%;
+    max-width: 320px;
+    background-color: #00a381;
+    color: #ffffff;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1100;
+    overflow-y: auto;
+}
+
+.sidebar-inner {
+    padding: 1.5rem;
+}
+
+.sidebar-section {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-title a {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.sidebar-heading {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+}
+
+.sidebar-list {
+    list-style: none;
+}
+
+.sidebar-list li + li {
+    margin-top: 0.25rem;
+}
+
+.sidebar a {
+    color: #ffffff;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.sidebar-sns .sns-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.sns-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+}
+
+.sns-links a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1050;
+}
+
+body.is-sidebar-open .sidebar {
+    transform: translateX(0);
+}
+
+body.is-sidebar-open .sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 /* footer */
@@ -30,7 +175,7 @@ article time {
 }
 
 .post-card {
-    padding: 2rem;
+    padding: 2rem 1.5rem;
 }
 
 .post-card h1 {
@@ -59,6 +204,24 @@ article time {
     border-bottom: 0.1rem #00a381 dashed;
 }
 
+.post-excerpt {
+    padding: 0 2rem 0.5rem 2rem;
+}
+
+.read-more {
+    padding: 0 2rem 2rem 2rem;
+}
+
+.read-more a {
+    color: #00a381;
+    font-size: 0.9rem;
+}
+
+.read-more a:hover {
+    color: #00cca0;
+    text-decoration: underline;
+}
+
 .post-content pre {
     background-color: #f4f4f4;
     padding: 1rem;
@@ -72,8 +235,58 @@ article time {
     display: block;
 }
 
+/* 固定ページ（プライバシーポリシー等） */
+.page-content .page-updated {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.page-content .policy-section {
+    margin-bottom: 2rem;
+}
+
+.page-content .policy-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-content .policy-section ul {
+    margin: 0.5rem 0 0 1.5rem;
+}
+
+.page-content .back-link {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 0.1rem #00a381 dashed;
+}
+
+.page-content .back-link a {
+    color: #00a381;
+}
+
+.page-content .back-link a:hover {
+    color: #00cca0;
+    text-decoration: underline;
+}
+
 @media (min-width: 768px) {
     .post-content img {
         width: 50%;
+    }
+
+    .header-inner {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .post-card {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .sidebar {
+        width: 320px;
     }
 }

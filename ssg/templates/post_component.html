@@ -5,5 +5,14 @@
         </a>
     </h2>
     <time>{{ post.front.date }}</time>
+    {% if is_index %}
+    <div class="post-excerpt">
+        {{ post.html | striptags | truncate(length=160, end="...") }}
+    </div>
+    <div class="read-more">
+        <a href="/posts/{{ post.front.slug }}.html">続きを読む →</a>
+    </div>
+    {% else %}
     <div class="post-content">{{ post.html | safe }}</div>
+    {% endif %}
 </article>

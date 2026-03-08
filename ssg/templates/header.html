@@ -1,5 +1,105 @@
 <div class="header">
     <div class="header-inner">
-        <h1><a href="/">五度目の三日坊主</a></h1>
+        <h1 class="site-title"><a href="/">五度目の三日坊主</a></h1>
+        <button class="menu-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </div>
+
+<nav class="sidebar" aria-hidden="true">
+    <div class="sidebar-inner">
+        <div class="sidebar-section sidebar-title">
+            <a href="/">五度目の三日坊主</a>
+        </div>
+        <div class="sidebar-section">
+            <a href="/">TOP</a>
+        </div>
+        <div class="sidebar-section">
+            <p class="sidebar-heading">カテゴリ</p>
+            <ul class="sidebar-list">
+                <li><a href="#">Diary</a></li>
+                <li><a href="#">Develop</a></li>
+                <li><a href="#">Cooking</a></li>
+                <li><a href="#">Gardening</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <a href="/privacy.html">プライバシーポリシー</a>
+        </div>
+        <div class="sidebar-section sidebar-sns">
+            <p class="sidebar-heading">SNS</p>
+            <div class="sns-links">
+                <a href="https://x.com/boccochan_s" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://github.com/boccochan-s" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/boccochan_s/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="sidebar-overlay"></div>
+
+<script>
+    (function () {
+        var toggle = document.querySelector('.menu-toggle');
+        var overlay = document.querySelector('.sidebar-overlay');
+        var sidebar = document.querySelector('.sidebar');
+        if (!toggle || !overlay || !sidebar) return;
+
+        function openSidebar() {
+            document.body.classList.add('is-sidebar-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            sidebar.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeSidebar() {
+            document.body.classList.remove('is-sidebar-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            sidebar.setAttribute('aria-hidden', 'true');
+        }
+
+        toggle.addEventListener('click', function () {
+            if (document.body.classList.contains('is-sidebar-open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        overlay.addEventListener('click', function () {
+            closeSidebar();
+        });
+    })();
+
+    (function () {
+        var header = document.querySelector('.header');
+        if (!header) return;
+        var lastScrollY = window.scrollY || 0;
+        var threshold = 60;
+
+        function onScroll() {
+            var currentScrollY = window.scrollY || 0;
+            if (currentScrollY <= threshold) {
+                header.classList.remove('header-is-hidden');
+            } else if (currentScrollY > lastScrollY) {
+                header.classList.add('header-is-hidden');
+            } else {
+                header.classList.remove('header-is-hidden');
+            }
+            lastScrollY = currentScrollY;
+        }
+
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                requestAnimationFrame(function () {
+                    onScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    })();
+</script>

@@ -24,4 +24,5 @@ fn main() {
 
     render::render_index(&posts);
     render::render_posts(&posts);
+    render::render_privacy();
 }
